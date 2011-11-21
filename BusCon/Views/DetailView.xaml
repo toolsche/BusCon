@@ -1,0 +1,150 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="BusCon.Views.DetailView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:Utility="clr-namespace:BusCon.Utility"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{d:DesignData Source=/SampleData/DetailViewSampleData.xaml}">
+        <Grid.Resources>
+            <Utility:DateTimeToDepartureTimeConverter x:Key="DateTimeToDepartureTimeConverter" />
+            <Utility:TargetStringHasValueToVisibilityConverter x:Key="TargetStringHasValueToVisibilityConverter"/>
+        </Grid.Resources>
+        <!--Pivot Control-->
+        <controls:Pivot Title="BUS/CON">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="Ergebnis">
+                <StackPanel>
+                    <ProgressBar Name="Progress1" IsIndeterminate="True" Style="{StaticResource PerformanceProgressBar}" />
+                    <TextBlock Text="{Binding ErrorText}"/>
+                    <Grid Background="{StaticResource PhoneAccentBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="von:" Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Connections[0].From.Name}" Grid.Column="1"/>
+                    </Grid>
+                    <Grid Background="{StaticResource PhoneAccentBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="nach:" Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Connections[0].To.Name}" Grid.Column="1"/>
+                    </Grid>
+                    <ListBox Name="listresult" ItemsSource="{Binding Connections}" Margin="0,20,0,0" Height="566">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="5,0,5,5" BorderBrush="LightGreen" Margin="0,0,0,40" Padding="0,0,0,0">
+                                    <StackPanel Width="456" Tag="{Binding PageURL}">
+                                        <Grid Background="LightGreen">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="36"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Verbindung" Padding="7,5,0,0" Foreground="Black"/>
+                                                <TextBlock Text="{Binding Id}" Padding="7,5,0,0" Foreground="Black"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,35,0">
+                                                <TextBlock Text="Dauer:" Padding="7,5,0,0" Foreground="Black"/>
+                                                <TextBlock Text="{Binding PublicDuration}" Padding="7,5,0,0" Foreground="Black"/>
+                                            </StackPanel>
+                                        </Grid>
+                                        <!--<Border BorderThickness="0,0,0,2" BorderBrush="White" Background="CadetBlue">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="345"/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Text="{Binding From.Name}" Style="{StaticResource PhoneTextNormalStyle}" Padding="5"/>
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                    <TextBlock Text="ab " Style="{StaticResource PhoneTextNormalStyle}" Margin="0" Padding="0,5"/>
+                                                    <TextBlock Text="{Binding DepartureTime, Converter={StaticResource DateTimeToDepartureTimeConverter}}" Padding="0,5" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>-->
+                                        <ItemsControl ItemsSource="{Binding Parts}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <Border BorderThickness="0,2,0,0" BorderBrush="LightGreen">
+                                                            <StackPanel>
+                                                                <Grid Background="{Binding Line.Colors[1]}">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="50"/>
+                                                                        <ColumnDefinition Width="118"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <!--<Image Source="Images/bus.png" Grid.Column="0" Stretch="None" Margin="0,0,10,0"/>-->
+                                                                    <TextBlock Text="{Binding Line.Label}" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextSmallStyle}" FontWeight="Bold" Foreground="{Binding Line.Colors[0]}"/>
+                                                                    <TextBlock Text="in Richtung" Grid.Column="1" Style="{StaticResource PhoneTextSmallStyle}" Foreground="{Binding Line.Colors[0]}" Visibility="{Binding Destination, Converter={StaticResource TargetStringHasValueToVisibilityConverter}}"/>
+                                                                    <TextBlock Text="{Binding Destination}" Grid.Column="2" Style="{StaticResource PhoneTextSmallStyle}" Foreground="{Binding Line.Colors[0]}"/>
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="350"/>
+                                                                        <ColumnDefinition/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBlock Text="{Binding Departure.Name}" Style="{StaticResource PhoneTextNormalStyle}" Loaded="ConnectionsLoaded"/>
+                                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                                        <TextBlock Text="ab " Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+                                                                        <TextBlock Text="{Binding DepartureTime, Converter={StaticResource DateTimeToDepartureTimeConverter}}" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                                    </StackPanel>
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="350"/>
+                                                                        <ColumnDefinition/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBlock Text="{Binding Arrival.Name}" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                                        <TextBlock Text="an " Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+                                                                        <TextBlock Text="{Binding ArrivalTime, Converter={StaticResource DateTimeToDepartureTimeConverter}}" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                                    </StackPanel>
+                                                                </Grid>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    
+</phone:PhoneApplicationPage>

@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4A532590-8DE5-4B96-BF1A-A8CE681362F1}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusCon</RootNamespace>
+    <AssemblyName>BusCon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>BusCon.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>BusCon.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.30422.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\..\..\Caliburn.Micro v1.2 RTW\bin\WP7\Release\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Extensions">
+      <HintPath>..\..\..\Caliburn.Micro v1.2 RTW\bin\WP7\Release\Caliburn.Micro.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.7.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animation\DynamicEffect.cs" />
+    <Compile Include="Animation\GrowToWidthEffect.cs" />
+    <Compile Include="Animation\RelativeAnimatingContentControl.cs" />
+    <Compile Include="Animation\TiltEffect.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DialogView.xaml.cs">
+      <DependentUpon>DialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogViewModel.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="Maps\CustomAdressResolver.cs" />
+    <Compile Include="MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageViewModel.cs" />
+    <Compile Include="PhonePage1.xaml.cs">
+      <DependentUpon>PhonePage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PTE\Capability.cs" />
+    <Compile Include="PTE\DTO\CommuterFare.cs" />
+    <Compile Include="PTE\DTO\Connection.cs" />
+    <Compile Include="PTE\DTO\Departure.cs" />
+    <Compile Include="PTE\DTO\Fare.cs" />
+    <Compile Include="PTE\DTO\GetConnectionDetailsResult.cs" />
+    <Compile Include="PTE\DTO\IFare.cs" />
+    <Compile Include="PTE\DTO\Line.cs" />
+    <Compile Include="PTE\DTO\LineDestination.cs" />
+    <Compile Include="PTE\DTO\Location.cs" />
+    <Compile Include="PTE\DTO\NearbyStationsResult.cs" />
+    <Compile Include="PTE\DTO\Point.cs" />
+    <Compile Include="PTE\DTO\QueryConnectionsResult.cs" />
+    <Compile Include="PTE\DTO\QueryDeparturesResult.cs" />
+    <Compile Include="PTE\DTO\StationDepartures.cs" />
+    <Compile Include="PTE\DTO\StationIdentifier.cs" />
+    <Compile Include="PTE\DTO\Stop.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PTE\AbstractEfaProvider.cs" />
+    <Compile Include="PTE\MvvProvider.cs" />
+    <Compile Include="PTE\NetworkId.cs" />
+    <Compile Include="PTE\NetworkProvider.cs" />
+    <Compile Include="PTE\VvmProvider.cs" />
+    <Compile Include="PTE\WalkSpeed.cs" />
+    <Compile Include="Service References\GeocodeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ShowDialog.cs" />
+    <Compile Include="Utility\AsyncHelper.cs" />
+    <Compile Include="Utility\Converters.cs" />
+    <Compile Include="Utility\DateTimeToDepartureMinutesConverter.cs" />
+    <Compile Include="Utility\EfaRequest.cs" />
+    <Compile Include="Utility\FileDownloader.cs" />
+    <Compile Include="Utility\FocusBehavior.cs" />
+    <Compile Include="Utility\GlobalExceptionHandler.cs" />
+    <Compile Include="Utility\Multibinding\BindingUtil.cs" />
+    <Compile Include="Utility\Multibinding\IMultiValueConverter.cs" />
+    <Compile Include="Utility\Multibinding\MultiBinding.cs" />
+    <Compile Include="Utility\Multibinding\MultiBindings.cs" />
+    <Compile Include="Utility\SearchConnectionsCompletedEventArgs.cs" />
+    <Compile Include="Utility\SearchLocationsCompletedEventArgs.cs" />
+    <Compile Include="Utility\UIThread.cs" />
+    <Compile Include="Utility\VisualTreeExtensions.cs" />
+    <Compile Include="Utility\WatermarkTextBox.cs" />
+    <Compile Include="ViewModels\ConnectionQueryViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionViewModel.cs" />
+    <Compile Include="ViewModels\DepartureResultViewModel.cs" />
+    <Compile Include="ViewModels\DepartureViewModel.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\ExceptionViewModel.cs" />
+    <Compile Include="ViewModels\FavoriteStationsViewModel.cs" />
+    <Compile Include="ViewModels\HistoryViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\NearbyStationsViewModel.cs" />
+    <Compile Include="ViewModels\SearchStationsViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\StationsViewModel.cs" />
+    <Compile Include="Views\DepartureView.xaml.cs">
+      <DependentUpon>DepartureView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailView.xaml.cs">
+      <DependentUpon>DetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectionView1.xaml.cs">
+      <DependentUpon>ConnectionView1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExceptionView.xaml.cs">
+      <DependentUpon>ExceptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FavoriteStationsView.xaml.cs">
+      <DependentUpon>FavoriteStationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryView.xaml.cs">
+      <DependentUpon>HistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectionView.xaml.cs">
+      <DependentUpon>ConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NearbyStationsView.xaml.cs">
+      <DependentUpon>NearbyStationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchStationsView.xaml.cs">
+      <DependentUpon>SearchStationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StationsView.xaml.cs">
+      <DependentUpon>StationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusConBootstrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="DialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <DesignData Include="SampleData\DetailViewSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
+    <DesignData Include="SampleData\FavoriteStationsViewSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="PhonePage1.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DepartureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConnectionsViewNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConnectionView1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExceptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FavoriteStationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NearbyStationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchStationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StationsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+    <None Include="Service References\GeocodeService\BusCon.GeocodeService.GeocodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GeocodeService\GeocodeService.wsdl" />
+    <None Include="Service References\GeocodeService\GeocodeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeocodeService\GeocodeService1.wsdl" />
+    <None Include="Service References\GeocodeService\GeocodeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeocodeService\GeocodeService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeocodeService\GeocodeService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeocodeService\GeocodeService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Resource Include="Images\switch_direction.png" />
+    <Resource Include="Images\pedestrian_crossing.png" />
+    <Content Include="ServiceReferences.ClientConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\GeocodeService\configuration91.svcinfo" />
+    <None Include="Service References\GeocodeService\configuration.svcinfo" />
+    <None Include="Service References\GeocodeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GeocodeService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

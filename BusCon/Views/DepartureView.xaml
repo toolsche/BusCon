@@ -1,0 +1,113 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="BusCon.Views.DepartureView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
+    xmlns:utility="clr-namespace:BusCon.Utility"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro">
+
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="BUS/CON" Style="{StaticResource PhoneTextNormalStyle}" HorizontalAlignment="Left" Margin="12,5"/>
+            <Border Background="{StaticResource PhoneAccentBrush}" Margin="0,0,12,0">
+                <TextBlock x:Name="PageTitle" Text="Abfahrten" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </Border>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Left" Width="456" tilteffect:TiltEffect.IsTiltEnabled="True"
+				cal:Message.Attach="[Event MouseLeftButtonDown] = [GoToSearchViewDeparture]">
+                <Border Background="{StaticResource PhoneAccentBrush}" Padding="5,0,0,0">
+                    <TextBlock VerticalAlignment="Center" Margin="0">von</TextBlock>
+                </Border>
+                <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="1" Height="50">
+                    <TextBlock x:Name="DepartureField" Text="Anton-Bruckner-Str., Erlangen" 
+					Margin="10,0,0,0" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="0,40,0,0">
+                <StackPanel>
+                    <Border Background="{StaticResource PhoneAccentBrush}" Padding="5,0,0,0">
+                        <TextBlock VerticalAlignment="Center" Margin="0">Datum</TextBlock>
+                    </Border>
+                    <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="1" Height="70" Padding="0,0,0,10">
+                        <toolkit:DatePicker Value="{Binding DateTimeField, Mode=TwoWay}"  
+											ValueStringFormat="{}{0:dd.MM.yyyy}" Width="220" Background="White"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Margin="20,0,0,0">
+                    <Border Background="{StaticResource PhoneAccentBrush}" Padding="5,0,0,0">
+                        <TextBlock VerticalAlignment="Center">Uhrzeit</TextBlock>
+                    </Border>
+                    <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="1" Height="70" Padding="0,0,0,10">
+                        <toolkit:TimePicker Value="{Binding DateTimeField, Mode=TwoWay}" 
+											ValueStringFormat="{}{0:HH:mm}" Width="210" Background="White"/>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+            <ListBox ItemsSource="{Binding Departures}" Grid.Row="2" Margin="0,10,0,0" Height="300">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBlock Text="{Binding Line}" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <Grid Margin="10,0,5,0" Width="370" VerticalAlignment="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Station}" Style="{StaticResource PhoneTextNormalStyle}" Grid.ColumnSpan="2"/>
+                                <TextBlock Text="{Binding InMinString}" Grid.Row="1" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBlock Text="{Binding TimeString}" Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextSubtleStyle}" HorizontalAlignment="Right"/>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="SearchDepartures" Grid.Row="5" Content="Suchen" Margin="0,0,0,0"/>
+        </Grid>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

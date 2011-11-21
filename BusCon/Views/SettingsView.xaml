@@ -1,0 +1,122 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="BusCon.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:utility="clr-namespace:BusCon.Utility"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid>
+        <Grid.Resources>
+            <utility:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+            <Style x:Key="noChromeButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Name="title" Grid.Row="0" Margin="12,17,0,28">
+            <StackPanel.RenderTransform>
+                <TranslateTransform />
+            </StackPanel.RenderTransform>
+
+            <TextBlock Text="BUS/CON" Style="{StaticResource PhoneTextNormalStyle}" />
+
+            <TextBlock Text="Einstellungen" Style="{StaticResource PhoneTextTitle1Style}" Margin="9,-7,0,0" />
+        </StackPanel>
+
+        <StackPanel Name="content" Grid.Row="1" Margin="12,0">
+            <StackPanel.RenderTransform>
+                <TranslateTransform />
+            </StackPanel.RenderTransform>
+
+            <toolkit:ToggleSwitch IsChecked="{Binding Path=AreLocationServicesAllowed, Mode=TwoWay}" toolkit:TiltEffect.SuppressTilt="True">
+                <TextBlock Text="Ortung nutzen" Margin="0,0,0,10"/>
+            </toolkit:ToggleSwitch>
+
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}">
+                Mithilfe der Ortung können Haltestellen in Ihrer Nähe ausfindig gemacht werden. Es werden keine Informationen anderweitig genutzt.
+            </TextBlock>
+            
+            <toolkit:ToggleSwitch IsChecked="{Binding Path=IsSendFeedbackEnabled, Mode=TwoWay}" toolkit:TiltEffect.SuppressTilt="True" Margin="0,30,0,0">
+                <TextBlock Text="Feedback senden" Margin="0,0,0,10"/>
+            </toolkit:ToggleSwitch>
+            
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}">
+                Feedback-Berichte werden verwendet, um die Problembehebung zu unterstützen. Es werden keine persönlichen Daten versendet.
+            </TextBlock>
+            
+            <!--<Button Style="{StaticResource noChromeButtonStyle}">
+                <interactivity:Interaction.Triggers>
+                    <interactivity:EventTrigger EventName="Click">-->
+                        <!-- <alkinteractivity:NavigateToAction TargetPage="/UI/LocationServicesPage.xaml" TransitionEffectName="navigateStoryboard" />-->
+           <!--         </interactivity:EventTrigger>
+                </interactivity:Interaction.Triggers>
+
+                <StackPanel>
+                    <TextBlock Text="Ortung" Style="{StaticResource PhoneTextExtraLargeStyle}" />
+
+                    <TextBlock Text="Eingeschaltet" Style="{StaticResource PhoneTextSubtleStyle}" Visibility="{Binding Path=AreLocationServicesAllowed, Converter={StaticResource booleanToVisibilityConverter}}" />
+
+                    <TextBlock Text="Ausgeschaltet" Style="{StaticResource PhoneTextSubtleStyle}" Visibility="{Binding Path=AreLocationServicesDisallowed, Converter={StaticResource booleanToVisibilityConverter}}" />
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource noChromeButtonStyle}" Margin="0,30,0,0">
+                <interactivity:Interaction.Triggers>
+                    <interactivity:EventTrigger EventName="Click">-->
+                        <!-- <alkinteractivity:NavigateToAction TargetPage="/UI/FeedbackPage.xaml" TransitionEffectName="navigateStoryboard" />-->
+                   <!-- </interactivity:EventTrigger>
+                </interactivity:Interaction.Triggers>
+
+                <StackPanel>
+                    <TextBlock Text="Berichte" Style="{StaticResource PhoneTextExtraLargeStyle}" />
+
+                    <TextBlock Text="Aktiviert mit Datenverbindung" Style="{StaticResource PhoneTextSubtleStyle}" Visibility="{Binding Path=IsRuntimeIntelligenceEnabledWithMobile, Converter={StaticResource booleanToVisibilityConverter}}" />
+
+                    <TextBlock Text="Aktiviert" Style="{StaticResource PhoneTextSubtleStyle}" Visibility="{Binding Path=IsRuntimeIntelligenceEnabledWithoutMobile, Converter={StaticResource booleanToVisibilityConverter}}" />
+
+                    <TextBlock Text="Deaktiviert" Style="{StaticResource PhoneTextSubtleStyle}" Visibility="{Binding Path=IsRuntimeIntelligenceDisabled, Converter={StaticResource booleanToVisibilityConverter}}" />
+                </StackPanel>
+            </Button>
+
+            <toolkit:ToggleSwitch IsChecked="{Binding Path=RememberSearchSettings, Mode=TwoWay}" Header="Sucheinstellungen merken" toolkit:TiltEffect.SuppressTilt="True" Margin="0,70,0,0" />
+            -->
+        </StackPanel>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

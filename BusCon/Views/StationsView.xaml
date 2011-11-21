@@ -1,0 +1,163 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="BusCon.Views.StationsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:watermark="clr-namespace:WatermarkedTextBoxControl"
+    xmlns:utility="clr-namespace:BusCon.Utility"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+
+    <Grid x:Name="LayoutRoot" Background="Transparent" tilteffect:TiltEffect.IsTiltEnabled="True">
+        <Grid.Resources>
+            <utility:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        </Grid.Resources>
+        <!--Panorama control-->
+        <controls:Pivot x:Name="Pivot" Title="BUS/CON" SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
+            <!--<controls:Pivot.Background>
+                <ImageBrush ImageSource="/PivotBackground.jpg"/>
+            </controls:Pivot.Background>-->
+
+            <!--Panorama item one-->
+            <controls:PivotItem Name="PivotItemFavorites">
+            	<controls:PivotItem.Header>
+            		<Border Background="{StaticResource PhoneAccentBrush}" Margin="-5,13,0,0">
+            			<TextBlock Margin="10,0,10,0">Favoriten</TextBlock>
+					 </Border>
+				</controls:PivotItem.Header>
+                <ListBox Margin="0,-10,0,0" ItemsSource="{Binding FavoriteStations}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Button cal:Message.Attach="SelectStation($datacontext)" BorderThickness="0" Margin="0">
+                                <StackPanel Tag="{Binding ItemGuid}" Name="itempanel">
+                                    <TextBlock Height="Auto" Width="456" Text="{Binding StationName}" TextWrapping="Wrap" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    <TextBlock Height="30" Width="456" Text="{Binding City}" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PivotItem>
+
+            <controls:PivotItem Name="PivotItemSearch">
+            	<controls:PivotItem.Header>
+            		<Border Background="{StaticResource PhoneAccentBrush}" Margin="-5,13,0,0">
+            			<TextBlock Margin="10,0,10,0">Suche</TextBlock>
+					</Border>
+				</controls:PivotItem.Header>
+                
+                <StackPanel Width="457" Margin="0,-10,0,0">
+                    <Grid Name="SearchGrid" Height="97" Width="434">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <watermark:WatermarkedTextBox Watermark="Stadt, Haltestelle" x:Name="SearchText" Height="90" TextAlignment="Left">
+                            <!--<i:Interaction.Behaviors>
+                                <localBehaviors:FocusBehavior HasInitialFocus="True"/>
+                            </i:Interaction.Behaviors>-->
+                        </watermark:WatermarkedTextBox>
+                        
+                        <Button x:Name="FindStations" Margin="0,4,-11,0" Width="123" Content="Ok" Grid.Column="1"/>
+                    </Grid>
+
+                    <ProgressBar Name="SearchProgressBar" IsIndeterminate="True" Style="{StaticResource PerformanceProgressBar}" Visibility="{Binding SearchProgressBarVisibility}" />
+                    
+                    <Grid Name="resultgrid">
+                        <ListBox Name="listresult" ItemsSource="{Binding FoundStations}" Margin="11,3,16,-13" Height="480">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Button cal:Message.Attach="SelectStation($datacontext)" BorderThickness="0" Margin="0">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,17" Width="456" Tag="{Binding PageURL}">
+                                            <!--<Image Height="106" Width="106" Source="Images/Haltestelle.gif" Margin="0,0,10,0" CacheMode="BitMapCache" />-->
+                                            <StackPanel Tag="{Binding ItemGuid}" Name="itempanel">
+                                                <TextBlock Height="Auto" Width="456" Text="{Binding StationName}" TextWrapping="Wrap" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                                <TextBlock Height="30" Width="456" Text="{Binding City}" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <TextBlock Text="Keine Station gefunden." Visibility="{Binding IsNoResultMessageVisible, Converter={StaticResource booleanToVisibilityConverter}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="20"/>
+                    </Grid>
+                </StackPanel>
+            </controls:PivotItem>
+
+            <controls:PivotItem Name="PivotItemNearby">
+            	<controls:PivotItem.Header>
+            		<Border Background="{StaticResource PhoneAccentBrush}" Margin="-5,13,0,0">
+            			<TextBlock Margin="10,0,10,0">Umgebung</TextBlock>
+					</Border>
+				</controls:PivotItem.Header>
+                <StackPanel Width="457" Margin="0,-10,0,0">
+                    <Grid Name="locateGrid" Height="110" Width="434">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0" Width="300">
+                            <TextBlock Text="Aktuelle Position:" x:Name="Position" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="{Binding Street}" Foreground="LightGray" Style="{StaticResource PhoneTextNormalStyle}" />
+                            <TextBlock Text="{Binding City}" Foreground="Gray" Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </StackPanel>
+                        <!--<Button x:Name="LocateNearbyStations" Margin="0,10,0,10" Width="160" Content="GPS" Grid.Column="1" />-->
+                    </Grid>
+
+                    <ProgressBar Name="Progress2" IsIndeterminate="True" Style="{StaticResource PerformanceProgressBar}" Visibility="{Binding NearbyProgressBarVisibility}"/>
+                    <Grid Name="resultgrid2">
+                        <ListBox Name="listresult2" ItemsSource="{Binding NearbyStations}" Margin="11,3,16,-13" Height="480">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Button cal:Message.Attach="SelectStation($datacontext)" BorderThickness="0" Margin="0">
+                                        <Grid Tag="{Binding PageURL}" Margin="0,0,5,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Width="30" Height="30" BorderBrush="Yellow" BorderThickness="2" Margin="0,0,10,0"/>
+                                            <StackPanel Tag="{Binding ItemGuid}" Name="itempanel" Grid.Column="1">
+                                                <TextBlock Height="Auto" Width="330" Text="{Binding StationName}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                <TextBlock Height="30" Text="{Binding City}" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Distance}" Margin="0,10,0,0" Grid.Column="2" TextAlignment="Right"/>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </StackPanel>
+
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    
+</phone:PhoneApplicationPage>

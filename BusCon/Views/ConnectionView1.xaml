@@ -1,0 +1,171 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="BusCon.Views.ConnectionView1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="BUS/CON" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Verbindungen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <!--<Border BorderBrush="Red" BorderThickness="1">
+                <efa:UserControl1 x:Name="UserControl1" Width="450" Height="600" Background="Beige"/>
+            </Border>-->
+            <Grid x:Name="outerGrid">
+                <Grid.Resources>
+                    <Style x:Key="TimeSlotGrid" TargetType="Grid">
+                        <Style.Setters>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="Margin" Value="5,10,5,10"/>
+                        </Style.Setters>
+                    </Style>
+                    <Style x:Key="TimeGridLine" TargetType="Line">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="LightGray"/>
+                            <Setter Property="X1" Value="40"/>
+                            <Setter Property="X2" Value="460"/>
+                            <Setter Property="Y1" Value="10"/>
+                            <Setter Property="Y2" Value="10"/>
+                            <Setter Property="StrokeThickness" Value="0.5"/>
+                        </Style.Setters>
+                    </Style>
+                    <Style x:Key="TimeSlotText" TargetType="TextBlock">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontFamily" Value="Consolas"/>
+                    </Style>
+                </Grid.Resources>
+                <ItemsControl x:Name="itemsControl" ItemsSource="{Binding TimeSlots}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Style="{StaticResource TimeSlotGrid}">
+                                <Line Style="{StaticResource TimeGridLine}"/>
+                                <TextBlock Style="{StaticResource TimeSlotText}" Text="{Binding}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid Visibility="Collapsed">
+                    <StackPanel>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">11:00</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">11:10</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">11:20</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">11:30</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">11:40</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">11:50</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">12:00</TextBlock>
+                        </Grid>
+                        <Grid Style="{StaticResource TimeSlotGrid}">
+                            <Line Style="{StaticResource TimeGridLine}"/>
+                            <TextBlock Style="{StaticResource TimeSlotText}">12:10</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <ItemsControl x:Name="ItemsControlTrips" ItemsSource="{Binding CurrentConnection.Trips}" Margin="70,18,0,0" Visibility="Visible" BorderBrush="AliceBlue" BorderThickness="1">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl Margin="3,0,3,0" ItemsSource="{Binding Parts}" HorizontalAlignment="Left">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid VerticalAlignment="Top"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="120" Margin="{Binding MarginTop}" VerticalAlignment="Top" Tag="{Binding Id}">
+                                            <Rectangle Style="{Binding PartStyle}" Height="{Binding RectangleHeight}"/>
+                                            <TextBlock Text="{Binding Line}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid Margin="70,18,0,0" Visibility="Collapsed" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Margin="3,0,3,0" x:Name="connectionGrid1st" VerticalAlignment="Top" Width="120">
+                            <Rectangle Style="{StaticResource TripPartRectangleGreenStyle}" Height="70" Margin="0,30,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="S21" Foreground="White" HorizontalAlignment="Center" Margin="0,55,0,0"/>
+
+                            <Rectangle Style="{StaticResource TripPartRectangleGreenStyle}" Height="60" Margin="0,110,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="RE 4580" Foreground="White" HorizontalAlignment="Center" Margin="0,130,0,0"/>
+
+                            <Rectangle Style="{StaticResource TripPartRectangleBlueStyle}" Height="58" Margin="0,180,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="U21" Foreground="White" Margin="0,195,0,0" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="3,0,3,0" x:Name="connectionGrid2nd" VerticalAlignment="Top" Width="120">
+                            <Rectangle Style="{StaticResource TripPartRectangleYellowStyle}" Height="50" Margin="0,160,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="U1" Foreground="White" Margin="0,175,0,0" HorizontalAlignment="Center"/>
+
+                            <Rectangle Style="{StaticResource TripPartRectangleRedStyle}" Height="70" Margin="0,45,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="30E" Foreground="White" HorizontalAlignment="Center" Margin="0,70,0,0"/>
+                        </Grid>
+                        <Grid Grid.Column="2" Margin="3,0,3,0" x:Name="connectionGrid3rd" VerticalAlignment="Top" Width="120">
+                            <Rectangle Style="{StaticResource TripPartRectangleBlueStyle}" Height="50" Margin="0,140,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="U1" Foreground="White" Margin="0,155,0,0" HorizontalAlignment="Center"/>
+                    </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

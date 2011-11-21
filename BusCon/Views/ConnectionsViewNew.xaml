@@ -1,0 +1,388 @@
+﻿<UserControl x:Class="BusCon.UserControl2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
+    <ScrollViewer Background="Black" Width="480" Height="800">
+        <Grid Margin="0,0,0,0" Width="700">
+        <Rectangle Height="25" Fill="DarkGray" VerticalAlignment="Top"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style x:Key="TimeFrameLineStyle" TargetType="Line">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="Gray"/>
+                            <Setter Property="X1" Value="30"/>
+                            <Setter Property="X2" Value="30"/>
+                            <Setter Property="Y1" Value="2"/>
+                            <Setter Property="Y2" Value="483"/>
+                            <Setter Property="StrokeThickness" Value="1"/>
+                        </Style.Setters>
+                    </Style>
+                    <Style x:Key="TimeFrameBetweenLineStyle" TargetType="Line">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="Gray"/>
+                            <Setter Property="X1" Value="10"/>
+                            <Setter Property="X2" Value="10"/>
+                            <Setter Property="Y1" Value="20"/>
+                            <Setter Property="Y2" Value="500"/>
+                            <Setter Property="Margin" Value="10,5,0,0"/>
+                            <Setter Property="StrokeThickness" Value="0.5"/>
+                        </Style.Setters>
+                    </Style>
+                    <Style x:Key="TimeFrameTextStyle" TargetType="TextBlock">
+                        <Style.Setters>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Margin" Value="15,7,0,0"/>
+                            <Setter Property="Height" Value="15"/>
+                        </Style.Setters>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <!-- Times and Lines-->
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="12:52" Margin="5,7,0,0" Height="15" FontSize="12" FontWeight="Bold"/>
+                    <Line X1="0" X2="0" Y1="0" Y2="500" Stroke="Red" StrokeThickness="2" Margin="20,5,0,0"/>
+                </StackPanel>
+                
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="13:00" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="13:10" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="13:20" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="13:30" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="13:40" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="13:50" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="14:00" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="14:10" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="14:20" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="14:20" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="14:30" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+
+                <Line Style="{StaticResource TimeFrameBetweenLineStyle}"/>
+
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="14:40" Style="{StaticResource TimeFrameTextStyle}"/>
+                    <Line Style="{StaticResource TimeFrameLineStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Margin="20,60,0,0">
+
+            <!-- CONNECTION 1 -->
+            <StackPanel Orientation="Horizontal" Height="40">
+                <Grid Width="45">
+                    <Rectangle Fill="LightGray" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="0" Name="MyRectangle1">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle1" Storyboard.TargetProperty="Width" From="0" To="45" BeginTime="0:0:0.0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ColorAnimation Storyboard.TargetName="LineTextBlock1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                        From="Transparent" To="Black" BeginTime="0:0:0.0" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <TextBlock Name="LineTextBlock1" Text="8 min" Foreground="Transparent" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="3,0,5,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Gray" Width="0" Name="MyRectangle2">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle2" Storyboard.TargetProperty="Width" From="0" To="40" BeginTime="0:0:0.1" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="LineTextBlock2" Storyboard.TargetProperty="Opacity"
+                                            From="0" To="1" BeginTime="0:0:0.1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <Image Name="LineTextBlock2" Opacity="0" Source="../Images/pedestrian_crossing.png" Width="30"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="DarkBlue" Width="0" Name="MyRectangle3">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle3" Storyboard.TargetProperty="Width" From="0" To="100" BeginTime="0:0:0.2" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ColorAnimation Storyboard.TargetName="LineTextBlock3" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                        From="Transparent" To="White" BeginTime="0:0:0.2" Duration="0:0:0.4"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <TextBlock Name="LineTextBlock3" Text="U2" FontSize="20" Foreground="Transparent" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Gray" Width="0" Name="MyRectangle4">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle4" Storyboard.TargetProperty="Width" From="0" To="12" BeginTime="0:0:0.4" Duration="0:0:0.1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ColorAnimation Storyboard.TargetName="LineTextBlock4" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                            From="Transparent" To="White" BeginTime="0:0:0.4" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <TextBlock Name="LineTextBlock4" Text="2" FontSize="14" Foreground="Transparent" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,0,0,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Purple" Width="0" Name="MyRectangle5">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle5" Storyboard.TargetProperty="Width" From="0" To="40" BeginTime="0:0:0.5" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ColorAnimation Storyboard.TargetName="LineTextBlock5" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                            From="Transparent" To="White" BeginTime="0:0:0.5" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <TextBlock Name="LineTextBlock5" Text="4" FontSize="20" Foreground="Transparent" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Gray" Width="0" Name="MyRectangle6">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle6" Storyboard.TargetProperty="Width" From="0" To="25" BeginTime="0:0:0.6" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ColorAnimation Storyboard.TargetName="LineTextBlock6" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                From="Transparent" To="White" BeginTime="0:0:0.6" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <TextBlock Name="LineTextBlock6" Text="4" FontSize="14" Foreground="Transparent" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,0,0,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Red" Margin="0,0,0,0" Width="0" Name="MyRectangle7">
+                        <Rectangle.Triggers>
+                            <EventTrigger RoutedEvent="Rectangle.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MyRectangle7" Storyboard.TargetProperty="Width" From="0" To="140" BeginTime="0:0:0.8" Duration="0:0:0.5">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ColorAnimation Storyboard.TargetName="LineTextBlock7" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                            From="Transparent" To="White" BeginTime="0:0:0.8" Duration="0:0:0.7"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Rectangle.Triggers>
+                    </Rectangle>
+                    <TextBlock Name="LineTextBlock7" Foreground="Transparent" Text="287" FontSize="20" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Name="StackDuration" Opacity="0">
+                    <StackPanel.Triggers>
+                        <EventTrigger RoutedEvent="Rectangle.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="StackDuration" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.5" Duration="0:0:0.8"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>    
+                    </StackPanel.Triggers>
+                    <Ellipse Width="12" Height="12" Fill="White" Margin="47,5,2,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="0:44" FontSize="14" FontFamily="Tahoma" Foreground="White" Margin="3,2,0,0"/>
+            </StackPanel>
+
+            <!-- CONNECTION 2 -->
+            <StackPanel Orientation="Horizontal" Height="40" Margin="0,40,0,0">
+                <Grid>
+                    <Rectangle Fill="LightGray" Width="80" Height="20" VerticalAlignment="Bottom"/>
+                    <TextBlock Text="10 min" Foreground="Black" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,0,5,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Purple" Width="80"/>
+                    <TextBlock Text="9" FontSize="20" Foreground="White" VerticalAlignment="Top" Margin="5,14,0,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="DarkBlue" Width="120"/>
+                    <TextBlock Text="U1" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Red" Width="130"/>
+                    <TextBlock Text="34" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="12" Height="12" Fill="White" Margin="82,5,2,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="0:48" FontSize="14" FontFamily="Tahoma" Foreground="White" Margin="3,2,0,0"/>
+            </StackPanel>
+
+            <!-- CONNECTION 3 -->
+            <StackPanel Orientation="Horizontal" Height="40" Margin="0,40,0,0">
+                <Grid>
+                    <Rectangle Fill="LightGray" Width="100" Height="20" VerticalAlignment="Bottom"/>
+                    <TextBlock Text="15 min" Foreground="Black" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,0,5,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Gray" Width="40"/>
+                    <!--<TextBlock Text="#" FontSize="26" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2,0,0,0"/>-->
+                    <Image Source="../Images/pedestrian_crossing.png" Width="30"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="#EE8840" Width="160"/>
+                    <TextBlock Text="Bus M29" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Gray" Width="8"/>
+                    <TextBlock Text="1" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,0,0,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="DarkBlue" Width="80"/>
+                    <TextBlock Text="U2" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Red" Width="180"/>
+                    <TextBlock Text="30E" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="12" Height="12" Fill="White" Margin="102,5,2,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="0:34" FontSize="14" FontFamily="Tahoma" Foreground="White" Margin="3,2,0,0"/>
+            </StackPanel>
+
+            <!-- CONNECTION 4 -->
+            <StackPanel Orientation="Horizontal" Height="40" Margin="0,40,0,0">
+                <Grid>
+                    <Rectangle Fill="LightGray" Width="120" Height="20" VerticalAlignment="Bottom"/>
+                    <TextBlock Text="18 min" Foreground="Black" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,0,5,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Green" Width="90"/>
+                    <TextBlock Text="S1" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Gray" Width="50"/>
+                    <TextBlock Text="8" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,0,0,0"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="DarkBlue" Width="160"/>
+                    <TextBlock Text="U11" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Purple" Width="40"/>
+                    <TextBlock Text="4" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+                <Grid>
+                    <Rectangle Fill="Green" Width="200"/>
+                    <TextBlock Text="S21" FontSize="20" Foreground="White" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </Grid>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="12" Height="12" Fill="White" Margin="122,5,2,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="0:35" FontSize="14" FontFamily="Tahoma" Foreground="White" Margin="3,2,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,110 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="BusCon.Views.HistoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="BUS/CON" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,5"/>
+            <Border Margin="0,0,10,0" Background="{StaticResource PhoneAccentBrush}" >
+            	<TextBlock x:Name="PageTitle" Text="Verlauf" Style="{StaticResource PhoneTextTitle1Style}" Height="96"/>
+            </Border>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ListBox SelectedIndex="{Binding SelectedIndex}" cal:Message.Attach="[Event SelectionChanged] = [OnSelectionChangedAction($eventArgs)]">
+                <ListBoxItem Margin="10" Tag="0">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Rectangle Width="50" Height="50" StrokeDashCap="Square" Stroke="{StaticResource PhoneForegroundBrush}" StrokeDashArray="4"></Rectangle>
+                            <Rectangle Width="40" Height="40" Fill="#70BA00" Stroke="{StaticResource PhoneForegroundBrush}" Margin="15"/>
+                        </Grid>
+                        <StackPanel Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,20,0" Foreground="Gray">von</TextBlock>
+                                <TextBlock Foreground="{StaticResource PhoneForegroundBrush}">Anton-Bruckner-Str., Erlangen</TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,10,0" Foreground="Gray">nach</TextBlock>
+                                <TextBlock Foreground="{StaticResource PhoneForegroundBrush}">Gostenhof, Nürnberg</TextBlock>
+                            </StackPanel>
+                            <TextBlock Foreground="DarkOrange" FontSize="18" Margin="0,5,5,5">
+                                Letzten Freitag um 08:08 Uhr</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Margin="10" Tag="1">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Rectangle Width="50" Height="50" StrokeDashCap="Square" Stroke="{StaticResource PhoneForegroundBrush}" StrokeDashArray="4"></Rectangle>
+                            <Rectangle Width="40" Height="40" Fill="CornflowerBlue" Stroke="{StaticResource PhoneForegroundBrush}" Margin="15"/>
+                        </Grid>
+                        <StackPanel Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,20,0" Foreground="Gray">von</TextBlock>
+                                <TextBlock Foreground="{StaticResource PhoneForegroundBrush}">Schenkstr., Erlangen</TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,10,0" Foreground="Gray">nach</TextBlock>
+                                <TextBlock Foreground="{StaticResource PhoneForegroundBrush}">St. Johann, Erlangen-Büchenbach</TextBlock>
+                            </StackPanel>
+                            <TextBlock Foreground="DarkOrange" FontSize="18" Margin="0,5,5,5">
+                                Mittwoch 17.09. um 20:03 Uhr</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Margin="10" Tag="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Rectangle Width="50" Height="50" StrokeDashCap="Square" Stroke="{StaticResource PhoneForegroundBrush}" StrokeDashArray="4"></Rectangle>
+                            <Rectangle Width="40" Height="40" Fill="IndianRed" Stroke="{StaticResource PhoneForegroundBrush}" Margin="15"/>
+                        </Grid>
+                        <StackPanel Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,20,0" Foreground="Gray">von</TextBlock>
+                                <TextBlock Foreground="{StaticResource PhoneForegroundBrush}">Stintzingstr., Erlangen</TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,10,0" Foreground="Gray">nach</TextBlock>
+                                <TextBlock Foreground="{StaticResource PhoneForegroundBrush}">Plärrer, Nürnberg</TextBlock>
+                            </StackPanel>
+                            <TextBlock Foreground="DarkOrange" FontSize="18" Margin="0,5,5,5">
+                                Heute um 07:03 Uhr</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

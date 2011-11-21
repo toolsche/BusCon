@@ -1,0 +1,26 @@
+﻿<m:Connections xmlns:m="clr-namespace:BusCon.PTE.DTO">
+    <m:Connection Id="0" DepartureTime="1/5/2011 20:55" ArrivalTime="1/5/2011 21:34" PublicDuration="00:37">
+        <m:Connection.From>
+            <m:Location Name="Erlangen Sophienstraße"/>
+        </m:Connection.From>
+        <m:Connection.To>
+            <m:Location Name="Erlangen Arcaden"/>
+        </m:Connection.To>
+    </m:Connection>
+    <m:Connection Id="1" DepartureTime="1/5/2011 21:15" ArrivalTime="1/5/2011 21:44">
+        <m:Connection.From>
+            <m:Location Name="Erlangen Sophienstraße"/>
+        </m:Connection.From>
+        <m:Connection.To>
+            <m:Location Name="Erlangen Arcaden"/>
+        </m:Connection.To>
+    </m:Connection>
+    <m:Connection Id="2" DepartureTime="1/5/2011 21:45" ArrivalTime="1/5/2011 22:14">
+        <m:Connection.From>
+            <m:Location Name="Erlangen Sophienstraße"/>
+        </m:Connection.From>
+        <m:Connection.To>
+            <m:Location Name="Erlangen Arcaden"/>
+        </m:Connection.To>
+    </m:Connection>
+</m:Connections>
